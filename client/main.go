@@ -65,7 +65,7 @@ import (
 	"github.com/golang/snappy"
 	"github.com/hashicorp/yamux"
 	"github.com/urfave/cli"
-	kcp "github.com/xtaci/kcp-go"
+	kcp "github.com/madeye/kcp-go"
 )
 
 var (
@@ -356,7 +356,7 @@ func main() {
 			LogOutput:              os.Stderr,
 		}
 		createConn := func() *yamux.Session {
-			kcpconn, err := kcp.DialWithOptions(remoteaddr, block, datashard, parityshard)
+			kcpconn, err := kcp.DialWithOptions(remoteaddr, true, block, datashard, parityshard)
 			checkError(err)
 			kcpconn.SetStreamMode(true)
 			kcpconn.SetNoDelay(nodelay, interval, resend, nc)
