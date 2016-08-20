@@ -14,7 +14,7 @@ import (
 	"github.com/golang/snappy"
 	"github.com/hashicorp/yamux"
 	"github.com/urfave/cli"
-	kcp "github.com/xtaci/kcp-go"
+	kcp "github.com/madeye/kcp-go"
 )
 
 var (
@@ -249,7 +249,7 @@ func main() {
 		}
 
 		datashard, parityshard := c.Int("datashard"), c.Int("parityshard")
-		lis, err := kcp.ListenWithOptions(c.String("listen"), block, datashard, parityshard)
+		lis, err := kcp.ListenWithOptions(c.String("listen"), true, block, datashard, parityshard)
 		if err != nil {
 			log.Fatal(err)
 		}
